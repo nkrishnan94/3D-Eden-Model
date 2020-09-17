@@ -97,13 +97,14 @@ int main(){
 
 						
 						srand( unsigned(time(NULL)));
-						double u;
+						//double u;
 
-						u=(rand() & 1000)*.001;
+						//u=(rand() & 1000)*.001;
 						//std::cout<< u <<"\n";
 
-						int pick;
-						if (u < (1/5)*.95){
+						//int pick;
+						int pick = rand() % 6 + 0;
+						/*if (u < (1/5)*.95){
 							pick=0;
 						}
 						if ((u>(1/5)*.95)&&(u < (2/5)*.95)){
@@ -120,7 +121,7 @@ int main(){
 						}
 						if (u>.95){
 							pick=5;
-						}
+						}*/
 
 						if(pick==0){
 
