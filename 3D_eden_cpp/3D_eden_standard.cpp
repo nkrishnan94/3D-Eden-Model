@@ -16,7 +16,7 @@
 const int xdemes = 500;
 const int ydemes = 500;
 const int zdemes = 500;
-unsigned int n_gens = 100;
+unsigned int n_gens = 50;
 
 
 long double deme[xdemes][ydemes][zdemes] = {{{0}}};
@@ -48,7 +48,7 @@ int main(){
 	ostringstream date_time;
 	date_time << buffer;
 
-	int init_rad =10;
+	int init_rad =100;
 
 
 	for(int i = int(xdemes*.5)-init_rad; i < int(xdemes*.5)+init_rad; i++){

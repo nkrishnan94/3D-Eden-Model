@@ -67,9 +67,9 @@ int main(){
 
 
 	for (int dt = 0 ; dt < n_gens; dt++ ){	
-		ostringstream strT;
-		strT << dt;
-		cout <<	dt <<endl;
+		//ostringstream strT;
+		//strT << dt;
+		//cout <<	dt <<endl;
 
 		//cout <<	dt <<endl;
 
