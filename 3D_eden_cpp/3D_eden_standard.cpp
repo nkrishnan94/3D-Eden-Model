@@ -15,8 +15,12 @@
 
 const int xdemes = 500;
 const int ydemes = 500;
-const int zdemes = 500;
+const int zdemes = 100;
 unsigned int n_gens = 100;
+unsigned int deatht = 40;
+const float liftp = 0.1;
+
+
 
 
 long double deme[xdemes][ydemes][zdemes] = {{{0}}};
@@ -30,7 +34,7 @@ int main(){
 	srand (time(NULL));
 
 
-	int n_data = 50;
+	int n_data = 25;
 	int record_time = int(n_gens/n_data);
 
 	ofstream fprof;
@@ -135,6 +139,9 @@ int main(){
 			int pick = rand() % empty.size() + 0;
 			deme[x+neighb[empty[pick]] [0]][y+neighb[empty[pick]] [1]][z+neighb[empty[pick]] [2]]=1;
 
+
+			//deme[x+neighb[empty[pick]] [0]][y+neighb[empty[pick]] [1]][z+neighb[empty[pick]] [2]]=1;
+
 			
 
 
@@ -146,7 +153,22 @@ int main(){
 
 
 
+		if (dt==deatht){
 
+			for(int i = int(xdemes*.5)-2; i < int(xdemes*.5)+2; i++){
+				for(int j = int(ydemes*.5)-10; j < int(ydemes*.5)+10; j++){
+					
+					deme[i][j][2] =0;
+					deme[i][j][1] =0;
+					deme[i][j][0] =0;
+					
+				}
+
+			}
+
+
+
+		}
 
 
 
