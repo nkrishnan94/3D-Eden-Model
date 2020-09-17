@@ -16,7 +16,7 @@
 const int xdemes = 500;
 const int ydemes = 500;
 const int zdemes = 500;
-unsigned int n_gens = 25;
+unsigned int n_gens = 10;
 
 
 long double deme[xdemes][ydemes][zdemes] = {{{0}}};
@@ -30,7 +30,7 @@ int main(){
 	srand (time(NULL));
 
 
-	int n_data = 25;
+	int n_data = 5;
 	int record_time = int(n_gens/n_data);
 
 	ofstream fprof;
@@ -48,7 +48,11 @@ int main(){
 	ostringstream date_time;
 	date_time << buffer;
 
+<<<<<<< HEAD
 	int init_rad =25;
+=======
+	int init_rad =10;
+>>>>>>> parent of 8913142... python script fixed
 
 
 	for(int i = int(xdemes*.5)-init_rad; i < int(xdemes*.5)+init_rad; i++){
@@ -336,15 +340,8 @@ int main(){
 			ostringstream strT;
         	strT << dt;
         	string proftName = "prof_T"+ strT.str() + "_" + date_time.str() + ".txt";
-        	ofstream fproft, fprofz;
+        	ofstream fproft;
             fproft.open("push_data/"+proftName);
-	
-
-        	string profzName = "prof_Z"+ strT.str() + "_" + date_time.str() + ".txt";
-
-            fproft.open("push_data/"+proftName);
-            fprofz.open("push_data/"+profzName);
-            
             for(int i = 0; i <xdemes; i++){
             	for(int j = 0; j <ydemes; j++){
             		for(int k = 0; k <zdemes; k++){
@@ -355,21 +352,6 @@ int main(){
 
 
     				}
-            	}
-        	}
-
-
-            for(int i = 0; i <xdemes; i++){
-            	for(int j = 0; j <ydemes; j++){
-            		int maxz=0;
-            		for(int k = 0; k <zdemes; k++){
-            			if (deme[i][j][k]==1){
-            				maxz=k;
-
-            			}
-
-    				}
-    				fprofz << i << ", " << j << ", "<< maxz <<endl;
             	}
         	}
         	

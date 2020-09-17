@@ -22,6 +22,7 @@ int main(){
 
 	srand (time(NULL));
 	int pick = rand() % 3 + 0;
+<<<<<<< HEAD
 	//std::cout <<rand() << "\n";
 
 
@@ -31,6 +32,9 @@ int main(){
 	u=(rand() & 1000)*.001;
 	std::cout<< u <<"\n";
 
+=======
+	std::cout <<pick << "\n";
+>>>>>>> parent of 8913142... python script fixed
 
 
 
