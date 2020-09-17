@@ -22,7 +22,14 @@ int main(){
 
 	srand (time(NULL));
 	int pick = rand() % 3 + 0;
-	std::cout <<pick << "\n";
+	//std::cout <<rand() << "\n";
+
+	double u;
+	srand( unsigned(time(NULL)));
+
+	u=(double)rand()/(RAND_MAX + 1)+1+(rand()%1);
+	std::cout<<u <<"\n";
+
 
 
 

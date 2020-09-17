@@ -155,8 +155,14 @@ int main(){
 			ostringstream strT;
         	strT << dt;
         	string proftName = "prof_T"+ strT.str() + "_" + date_time.str() + ".txt";
-        	ofstream fproft;
-            fproft.open("standard_data/"+proftName);
+        	ofstream fproft, fprofz;
+            fproft.open("push_data/"+proftName);
+	
+
+        	string profzName = "prof_Z"+ strT.str() + "_" + date_time.str() + ".txt";
+
+            fproft.open("push_data/"+proftName);
+            fprofz.open("push_data/"+profzName);
             for(int i = 0; i <xdemes; i++){
             	for(int j = 0; j <ydemes; j++){
             		for(int k = 0; k <zdemes; k++){
@@ -166,6 +172,20 @@ int main(){
             			}
 
     				}
+            	}
+        	}
+
+            for(int i = 0; i <xdemes; i++){
+            	for(int j = 0; j <ydemes; j++){
+            		int maxz=0;
+            		for(int k = 0; k <zdemes; k++){
+            			if (deme[i][j][k]==1){
+            				maxz=k;
+
+            			}
+    				}
+            		fprofz << i << ", " << j << ", "<< maxz <<endl;
+
             	}
         	}
 
