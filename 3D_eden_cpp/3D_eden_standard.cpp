@@ -13,10 +13,10 @@
 #include <gsl/gsl_randist.h>
 
 
-const int xdemes = 500;
-const int ydemes = 500;
-const int zdemes = 500;
-unsigned int n_gens = 50;
+const int xdemes = 200;
+const int ydemes = 200;
+const int zdemes = 200;
+unsigned int n_gens = 25;
 
 
 long double deme[xdemes][ydemes][zdemes] = {{{0}}};
@@ -30,7 +30,7 @@ int main(){
 	srand (time(NULL));
 
 
-	int n_data = 10;
+	int n_data = 5;
 	int record_time = int(n_gens/n_data);
 
 	ofstream fprof;
@@ -48,7 +48,7 @@ int main(){
 	ostringstream date_time;
 	date_time << buffer;
 
-	int init_rad =100;
+	int init_rad =50;
 
 
 	for(int i = int(xdemes*.5)-init_rad; i < int(xdemes*.5)+init_rad; i++){
@@ -82,9 +82,9 @@ int main(){
 				for(int k = 0; k < zdemes; k++){
 					if (deme[i][j][k] ==1){
 						
-						//fullx.push_back(i);
-						//fully.push_back(j);
-						//fullz.push_back(k);
+						fullx.push_back(i);
+						fully.push_back(j);
+						fullz.push_back(k);
 
 						vector <int> empty;
 						for(int ne = 0; ne < 6; ne++){

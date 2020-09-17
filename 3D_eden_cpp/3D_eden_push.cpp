@@ -13,10 +13,10 @@
 #include <gsl/gsl_randist.h>
 
 
-const int xdemes = 500;
-const int ydemes = 500;
-const int zdemes = 500;
-unsigned int n_gens = 10;
+const int xdemes = 200;
+const int ydemes = 200;
+const int zdemes = 200;
+unsigned int n_gens = 25;
 
 
 long double deme[xdemes][ydemes][zdemes] = {{{0}}};
@@ -48,7 +48,7 @@ int main(){
 	ostringstream date_time;
 	date_time << buffer;
 
-	int init_rad =10;
+	int init_rad =50;
 
 
 	for(int i = int(xdemes*.5)-init_rad; i < int(xdemes*.5)+init_rad; i++){
@@ -81,102 +81,15 @@ int main(){
 				for(int k = 0; k < zdemes; k++){
 					if (deme[i][j][k]==1){
 
-						/*if ((count(fullx.begin(),fullx.end(),i)) ==0 && (count(fully.begin(),fully.end(),j)) ==0  &&(count(fullz.begin(),fullz.end(),k)) ==0 ){
+						if ((count(fullx.begin(),fullx.end(),i)) ==0 && (count(fully.begin(),fully.end(),j)) ==0  &&(count(fullz.begin(),fullz.end(),k)) ==0 ){
 
 
 							fullx.push_back(i);
 							fully.push_back(j);
 							fullz.push_back(k);
-						}*/	
-
-						int pick = rand() % 6 + 0;
-
-						if(pick==0){
-
-							int empty_flag = 0;
-							if(i>0){
-								for(int x =i-1; x>0; x--){
-									if ((deme[x][j][k] ==0) &&  (empty_flag==0)){
-
-										deme[x][j][k] =1;
-										empty_flag = 1;
-									}
-								}
-							}
-
 						}
 
-						if(pick==1){
-							int empty_flag = 0;
-							if (i<xdemes-1){
-								for(int x =i+1; x<xdemes; x++){
-									if ((deme[x][j][k] ==0) &&  (empty_flag==0)){
-										deme[x][j][k] =1;
-										empty_flag = 1;
-										
-									}
-								}
-							}
-
-						}
-
-
-
-						if(pick==2){
-							int empty_flag = 0;
-							if (j>0){
-								for(int y = j-1; y>0; y--){
-									if ((deme[i][y][k] ==0) &&  (empty_flag==0)){
-
-										deme[i][y][k] =1;
-										empty_flag = 1;
-									}
-								}
-							}
-
-						}
-
-						if(pick==3){
-							int empty_flag = 0;
-							if (j<ydemes-1){
-								for(int y =j+1; y<ydemes; y++){
-									if ((deme[i][y][k] ==0) &&  (empty_flag==0)){
-										deme[i][y][k] =1;
-										empty_flag = 1;
-										
-									}
-								}
-							}
-
-						}
-
-
-						if(pick==4){
-							int empty_flag = 0;
-							if (k>0){
-								for(int z =k-1; z>0; z--){
-									if ((deme[i][j][z] ==0) &&  (empty_flag==0)){
-
-										deme[i][j][z] =1;
-										empty_flag = 1;
-									}
-								}
-							}
-						}
-
-						if(pick==5){
-							int empty_flag = 0;
-							if(k<zdemes-1){
-								for(int z =k+1; z<zdemes; z++){
-									if ((deme[i][j][z] ==0) &&  (empty_flag==0)){
-										deme[i][j][z] =1;
-										empty_flag = 1;
-										
-									}
-								}
-							}
-
-						}
+						
 
 					}
 
@@ -187,7 +100,7 @@ int main(){
 	
 
 
-		//int pick_deme = rand() % fullx.size() + 0;
+		int pick_deme = rand() % fullx.size() + 0;
 		//cout <<pick_deme<<endl;
 		//cout <<"hi"<<endl;
 
@@ -196,98 +109,101 @@ int main(){
 		//fully.push_back(j);
 		//fullz.push_back(k);
 
-		/*int pick = rand() % 6 + 0;
-		int i =fullx[pick_deme];
-		int j =fully[pick_deme];
-		int k =fullz[pick_deme];
+		int pick = rand() % 6 + 0;
+		for(int f=0; f<fullx.size(); f++){
+			int i = fullx[f];
+			int j = fully[f];
+			int k = fullz[f];
+			int pick = rand() % 6 + 0;
 
 
 
-		if(pick==0){
-			int empty_flag = 0;
-			if(i>0){
-				for(int x =i-1; x>0; x--){
-					if ((deme[x][j][k] ==0) &&  (empty_flag==0)){
+			if(pick==0){
+				int empty_flag = 0;
+				if(i>0){
+					for(int x =i-1; x>0; x--){
+						if ((deme[x][j][k] ==0) &&  (empty_flag==0)){
 
-						deme[x][j][k] =1;
-						empty_flag = 1;
+							deme[x][j][k] =1;
+							empty_flag = 1;
+						}
+					}
+				}
+
+			}
+
+			if(pick==1){
+				int empty_flag = 0;
+				if (i<xdemes-1){
+					for(int x =i+1; x<xdemes; x++){
+						if ((deme[x][j][k] ==0) &&  (empty_flag==0)){
+							deme[x][j][k] =1;
+							empty_flag = 1;
+							
+						}
+					}
+				}
+
+			}
+
+
+
+			if(pick==2){
+				int empty_flag = 0;
+				if (j>0){
+					for(int y = j-1; y>0; y--){
+						if ((deme[i][y][k] ==0) &&  (empty_flag==0)){
+
+							deme[i][y][k] =1;
+							empty_flag = 1;
+						}
+					}
+				}
+
+			}
+
+			if(pick==3){
+				int empty_flag = 0;
+				if (j<ydemes-1){
+					for(int y =j+1; y<ydemes; y++){
+						if ((deme[i][y][k] ==0) &&  (empty_flag==0)){
+							deme[i][y][k] =1;
+							empty_flag = 1;
+							
+						}
+					}
+				}
+
+			}
+
+
+			if(pick==4){
+				int empty_flag = 0;
+				if (k>0){
+					for(int z =k-1; z>0; z--){
+						if ((deme[i][j][z] ==0) &&  (empty_flag==0)){
+
+							deme[i][j][z] =1;
+							empty_flag = 1;
+						}
 					}
 				}
 			}
 
+			if(pick==5){
+				int empty_flag = 0;
+				if(k<zdemes-1){
+					for(int z =k+1; z<zdemes; z++){
+						if ((deme[i][j][z] ==0) &&  (empty_flag==0)){
+							deme[i][j][z] =1;
+							empty_flag = 1;
+							
+						}
+					}
+				}
+
+			}
 		}
-
-		if(pick==1){
-			int empty_flag = 0;
-			if (i<xdemes-1){
-				for(int x =i+1; x<xdemes; x++){
-					if ((deme[x][j][k] ==0) &&  (empty_flag==0)){
-						deme[x][j][k] =1;
-						empty_flag = 1;
-						
-					}
-				}
-			}
-
-		}
-
-
-
-		if(pick==2){
-			int empty_flag = 0;
-			if (j>0){
-				for(int y = j-1; y>0; y--){
-					if ((deme[i][y][k] ==0) &&  (empty_flag==0)){
-
-						deme[i][y][k] =1;
-						empty_flag = 1;
-					}
-				}
-			}
-
-		}
-
-		if(pick==3){
-			int empty_flag = 0;
-			if (j<ydemes-1){
-				for(int y =j+1; y<ydemes; y++){
-					if ((deme[i][y][k] ==0) &&  (empty_flag==0)){
-						deme[i][y][k] =1;
-						empty_flag = 1;
-						
-					}
-				}
-			}
-
-		}
-
-
-		if(pick==4){
-			int empty_flag = 0;
-			if (k>0){
-				for(int z =k-1; z>0; z--){
-					if ((deme[i][j][z] ==0) &&  (empty_flag==0)){
-
-						deme[i][j][z] =1;
-						empty_flag = 1;
-					}
-				}
-			}
-		}
-
-		if(pick==5){
-			int empty_flag = 0;
-			if(k<zdemes-1){
-				for(int z =k+1; z<zdemes; z++){
-					if ((deme[i][j][z] ==0) &&  (empty_flag==0)){
-						deme[i][j][z] =1;
-						empty_flag = 1;
-						
-					}
-				}
-			}
-
-		}*/
 
 		
 
