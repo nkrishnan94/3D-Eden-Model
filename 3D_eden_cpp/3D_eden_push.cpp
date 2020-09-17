@@ -245,14 +245,15 @@ int main(){
         	}
             for(int i = 0; i <xdemes; i++){
             	for(int j = 0; j <ydemes; j++){
-            		int zmax = 0 ;
+            		int zmax=0;
             		for(int k = 0; k <zdemes; k++){
-            			if (deme[i][j][k]==1){
+	          			if (deme[i][j][k]==1){
             				zmax = k;
 
             			}
+
     				}
-    				fprofz << i << ", " << j << ", " << zmax <<endl;
+    				fprofz << i << ", " << j << ", "<< zmax <<endl;
             	}
         	}
         	
