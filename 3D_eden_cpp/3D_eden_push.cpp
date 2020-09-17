@@ -48,7 +48,7 @@ int main(){
 	ostringstream date_time;
 	date_time << buffer;
 
-	int init_rad =50;
+	int init_rad =25;
 
 
 	for(int i = int(xdemes*.5)-init_rad; i < int(xdemes*.5)+init_rad; i++){
@@ -89,7 +89,38 @@ int main(){
 							fullz.push_back(k);
 						}*/	
 
-						int pick = rand() % 6 + 0;
+						//int pick = rand() % 6 + 0;
+
+
+						//int pick = rand() % 3 + 0;
+						//std::cout <<rand() << "\n";
+
+						
+						srand( unsigned(time(NULL)));
+						double u;
+
+						u=(rand() & 1000)*.001;
+						//std::cout<< u <<"\n";
+
+						int pick;
+						if (u < (1/5)*.95){
+							pick=0;
+						}
+						if ((u>(1/5)*.95)&&(u < (2/5)*.95)){
+							pick=1;
+						}
+						if ((u>(2/5)*.95)&&(u < (3/5)*.95)){
+							pick=2;
+						}
+						if ((u>(3/5)*.95)&&(u < (4/5)*.95)){
+							pick=3;
+						}
+						if ((u>(4/5)*.95)&&(u < (5/5)*.95)){
+							pick=4;
+						}
+						if (u>.95){
+							pick=5;
+						}
 
 						if(pick==0){
 

@@ -24,11 +24,12 @@ int main(){
 	int pick = rand() % 3 + 0;
 	//std::cout <<rand() << "\n";
 
-	double u;
-	srand( unsigned(time(NULL)));
 
-	u=(double)rand()/(RAND_MAX + 1)+1+(rand()%1);
-	std::cout<<u <<"\n";
+	srand( unsigned(time(NULL)));
+	double u;
+
+	u=(rand() & 1000)*.001;
+	std::cout<< u <<"\n";
 
 
 
