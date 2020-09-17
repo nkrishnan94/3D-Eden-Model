@@ -265,6 +265,38 @@ int main(){
 
 	}
 
+	ostringstream strT;
+	strT << dt;
+	string proftName = "prof_T"+ strT.str() + "_" + date_time.str() + ".txt";
+	string profzName = "prof_Z"+ strT.str() + "_" + date_time.str() + ".txt";
+	ofstream fproft,fprofz;
+    fproft.open("standard_data/"+proftName);
+    fprofz.open("standard_data/"+profzName);
+    for(int i = 0; i <xdemes; i++){
+    	for(int j = 0; j <ydemes; j++){
+    		for(int k = 0; k <zdemes; k++){
+      			if (deme[i][j][k]==1){
+    				fproft << i << ", " << j << ", "<< k <<endl;
+
+    			}
+
+			}
+    	}
+	}
+    for(int i = 0; i <xdemes; i++){
+    	for(int j = 0; j <ydemes; j++){
+    		int zmax=0;
+    		for(int k = 0; k <zdemes; k++){
+      			if (deme[i][j][k]==1){
+    				zmax = k;
+
+    			}
+
+			}
+			fprofz << i << ", " << j << ", "<< zmax <<endl;
+    	}
+	}
+
     clock_t c_fin = clock();
     double run_time = double(c_fin - c_init)/CLOCKS_PER_SEC;
 
