@@ -16,7 +16,7 @@
 const int xdemes = 500;
 const int ydemes = 500;
 const int zdemes = 500;
-unsigned int n_gens = 10;
+unsigned int n_gens = 50;
 
 
 long double deme[xdemes][ydemes][zdemes] = {{{0}}};
@@ -38,8 +38,7 @@ int main(){
 	clock_t c_init = clock();
 	struct tm * timeinfo;
 	char buffer [80];
-	float ht = 0.5;
-	int prof_count = 1;
+	
 
 
 	time (&time_start);
@@ -48,11 +47,9 @@ int main(){
 	ostringstream date_time;
 	date_time << buffer;
 
-<<<<<<< HEAD
+
 	int init_rad =25;
-=======
-	int init_rad =10;
->>>>>>> parent of 8913142... python script fixed
+
 
 
 	for(int i = int(xdemes*.5)-init_rad; i < int(xdemes*.5)+init_rad; i++){
@@ -340,8 +337,10 @@ int main(){
 			ostringstream strT;
         	strT << dt;
         	string proftName = "prof_T"+ strT.str() + "_" + date_time.str() + ".txt";
-        	ofstream fproft;
+        	string profzName = "prof_Z"+ strT.str() + "_" + date_time.str() + ".txt";
+        	ofstream fproft,fprofz;
             fproft.open("push_data/"+proftName);
+            fprofz.open("push_data/"+profzName);
             for(int i = 0; i <xdemes; i++){
             	for(int j = 0; j <ydemes; j++){
             		for(int k = 0; k <zdemes; k++){
@@ -354,6 +353,20 @@ int main(){
     				}
             	}
         	}
+            for(int i = 0; i <xdemes; i++){
+            	for(int j = 0; j <ydemes; j++){
+            		int zmax = 0 ;
+            		for(int k = 0; k <zdemes; k++){
+            			
+            			if (deme[i][j][k]==1){
+            				int zmax = k;
+
+            			}
+    				}
+    				fprofz << i << ", " << j << ", " << zmax <<endl;
+            	}
+        	}
+        	
         	
 
         	//fproft.close(proftName);
