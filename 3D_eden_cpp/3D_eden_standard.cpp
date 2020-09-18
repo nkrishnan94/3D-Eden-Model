@@ -18,7 +18,7 @@ const int ydemes = 500;
 const int zdemes = 100;
 unsigned int n_gens = 100;
 unsigned int deatht = 40;
-const float liftp = 0.1;
+CDP_flag = 0;
 
 
 
@@ -137,6 +137,7 @@ int main(){
 			}
 
 			int pick = rand() % empty.size() + 0;
+			deme[x][y][z]=0;
 			deme[x+neighb[empty[pick]] [0]][y+neighb[empty[pick]] [1]][z+neighb[empty[pick]] [2]]=1;
 
 
@@ -153,7 +154,7 @@ int main(){
 
 
 
-		if (dt==deatht){
+		if ((dt==deatht)&&(CDP_flag==1)){
 
 			for(int i = int(xdemes*.5)-2; i < int(xdemes*.5)+2; i++){
 				for(int j = int(ydemes*.5)-10; j < int(ydemes*.5)+10; j++){
