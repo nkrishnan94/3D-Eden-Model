@@ -33,7 +33,7 @@ int main(){
 	std::cout<< u <<"\n";
 
 
-	std::cout <<pick << "\n";
+	//std::cout <<pick << "\n";
 
 
 
