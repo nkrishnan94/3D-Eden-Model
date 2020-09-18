@@ -13,12 +13,12 @@
 #include <gsl/gsl_randist.h>
 
 
-const int xdemes = 20;
-const int ydemes = 800;
-const int zdemes = 100;
-unsigned int n_gens = 1000;
+const int xdemes = 10;
+const int ydemes = 10;
+const int zdemes = 10;
+unsigned int n_gens = 10;
 unsigned int deatht = 150;
-int CDP_flag = 1;
+int CDP_flag = 0;
 double K_cell= .5 * pow(10,3);
 float Temp = 300;
 
@@ -158,7 +158,8 @@ int main(){
 
 
 	int n_data = 25;
-	int record_time = int(n_gens/n_data);
+	//int record_time = int(n_gens/n_data);
+	int record_time = 1;
 
 	ofstream fprof;
 	time_t time_start;
@@ -177,12 +178,13 @@ int main(){
 
 	
 
-
+	int agents= 0;
 	for(int i =1; i < xdemes; i+=2){
 		for(int j =1; j < ydemes; j+=2){
-			for(int k = 0; k < 50; k+=2){
+			for(int k = 1; k < kdemes; k+=2){
 
-				deme[int(i)][int(j)][int(k)] =1;
+				deme[i][j][k] =1;
+				agents+=1;
 
 			}
 			
@@ -210,14 +212,17 @@ int main(){
 		randz[k]=k;
 	}
 
-
+	
+	cout<<agents<<endl;
+	int spaces;
 	for (int dt = 0 ; dt < n_gens; dt++ ){	
-		
+
 
 
 		random_shuffle(randx,randx+xdemes);
 		random_shuffle(randy,randy+ydemes);
 		random_shuffle(randz,randz+zdemes);
+
 		
 		
 
@@ -232,9 +237,13 @@ int main(){
 					int y=randy[j];
 					int z=randz[k];
 					//cout<<i<<", "<<j<<", "<<k<<", ""hi"<<endl;
+					spaces+=1;
 
 					if (deme[x][y][z] ==1){
 
+						agents+=1;
+
+						//cout<<agents<<endl;
 
 						
 						vector <int> empty;
@@ -242,8 +251,13 @@ int main(){
 
 						for(int ne = 0; ne < 6; ne++){
 							if(( (x+neighb[ne][0]) >0)&&( (y+neighb[ne][1]) >0)&&( (z+neighb[ne][2]) >0)&&((x+neighb[ne][0]) <xdemes)&&((y+neighb[ne][1]) <ydemes)&&( (z+neighb[ne][2]) <zdemes)){
-								//deme[i+neighb[ne][0]][j+neighb[ne][1]][k+neighb[ne][2]]=1;
-								empty.push_back(ne);
+								//
+
+								if (deme[i+neighb[ne][0]][j+neighb[ne][1]][k+neighb[ne][2]]==0){
+
+									empty.push_back(ne);
+								}
+								
 
 							}
 
@@ -255,15 +269,20 @@ int main(){
 						
 
 						double energy0 = energy(deme,x,y,z);
-
+						cout<<deme[x][y][z]<<endl;
 						deme[x][y][z]=0;
+						
+						cout<<deme[x+neighb[empty[pick]][0]][y+neighb[empty[pick]] [1]][z+neighb[empty[pick]] [2]]<<endl;
+
 						deme[x+neighb[empty[pick]][0]][y+neighb[empty[pick]] [1]][z+neighb[empty[pick]] [2]]=1;
-						//cout<<x+neighb[empty[pick]][0]<<", "<<y+neighb[empty[pick]][1]<<", "<<z+neighb[empty[pick]][2]<<", "<<endl;
+						//cout <<x<<","<<y<<", "<<z<<", "<<deme[x][y][z]<<endl;
+						
 						double energy1 = energy(deme,x+neighb[empty[pick]][0],y+neighb[empty[pick]][1],z+neighb[empty[pick]][2]);
 						
 						double u;
 
 						//cout<<i<<", "<<j<<", "<<k<<", "<<endl;
+
 
 						if ((energy1<energy0) && (u>exp ( - (.5*K_cell * pow(abs(energy1-energy0) ,2))/Temp ) )){
 							
@@ -281,6 +300,24 @@ int main(){
 				}
 			}
 		}
+		agents=0;
+		for(int i = 0; i < xdemes; i++){
+			for(int j = 0; j < ydemes; j++){
+				for(int k = 0; k < zdemes; k++){
+					if (deme[i][j][k]==1){
+						agents+=1;
+
+
+
+					}
+
+				}
+			}
+		}
+		cout<<agents<<endl;
+
+
+
 
 
 
@@ -290,15 +327,14 @@ int main(){
 
 
 
-
+		//cout<<agents<<endl;
 		if ((dt==deatht)&&(CDP_flag==1)){
+
 
 			for(int i = 0; i < xdemes; i++){
 				for(int j = int(ydemes*.5)-100; j < int(ydemes*.5)+100; j++){
 					for(int k = 0; k < 21; k++){
-					
 						deme[i][j][k] =0;
-
 					}
 				}
 
@@ -312,6 +348,7 @@ int main(){
 
 	
 		if (( dt % record_time) == 0){
+
 
 
 			ostringstream strT;
